@@ -71,13 +71,43 @@ button {
 button:hover {
     background-color: #2980b9;
 }
-/* P1e6b */
+
 header nav a {
     color: #5B8266;
     margin: 0 1em;
 }
 
-/* P1f7a */
 footer a {
     color: #294936;
+}
+
+/* Gallery styles */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+    padding: 1em;
+}
+
+.frame {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1em;
+    text-align: center;
+}
+
+.frame img {
+    max-width: 100%;
+    height: auto;
+}
+
+.symbol {
+    font-size: 2em;
+    color: #5B8266;
+}
+
+.title {
+    font-size: 1.2em;
+    color: #294936;
+    margin-top: 0.5em;
 }
