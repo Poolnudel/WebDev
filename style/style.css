@@ -46,6 +46,16 @@ header, footer {
     text-align: center;
 }
 
+footer {
+    background-color: #294936;
+    padding: 1em 0;
+    text-align: center;
+}
+
+footer a {
+    color: #D7E4C0;
+}
+
 header a, footer a {
     color: #fff;
 }
@@ -61,7 +71,6 @@ button {
 button:hover {
     background-color: #2980b9;
 }
-
 /* P1e6b */
 header nav a {
     color: #5B8266;
