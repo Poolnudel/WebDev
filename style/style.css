@@ -71,3 +71,13 @@ button {
 button:hover {
     background-color: #2980b9;
 }
+/* P1e6b */
+header nav a {
+    color: #5B8266;
+    margin: 0 1em;
+}
+
+/* P1f7a */
+footer a {
+    color: #294936;
+}
