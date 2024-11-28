@@ -1,0 +1,21 @@
+th, td {
+    width : 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.legende {
+    color:white;
+    text-align: center;
+    font-weight: 800;
+    background-color:#808080;
+}   
+.helleZeile {
+    background-color: #eeeeee;
+}
+.dunkleZeile {
+    background-color: #dddddd;
+}
+.belegt {
+    background-color: #FFEEBC;
+}

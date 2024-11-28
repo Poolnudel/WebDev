@@ -1,0 +1,12 @@
+.fehler
+{
+    color: red;
+    border:2px solid red;
+    padding: 0.5em;
+}
+
+input, select
+{
+    padding: 0.5em;
+}
+

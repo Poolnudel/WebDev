@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stundenplan</title>
+
+    <link rel="stylesheet" href="stundenplan.css">
+</head>
+<body>
+    <h1>Stundenplan</h1>
+    <table cellspacing="2">
+        <thead>
+            <tr class="legende">
+                <th>Stunde</th>
+                <th>Montag</th>
+                <th>Dienstag</th>
+                <th>Mittwoch</th>
+                <th>Donnerstag</th>
+                <th>Freitag</th>
+                <th>Samstag</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="dunkleZeile">
+                <td class="legende">1. Std.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td rowspan="2" class="belegt">Case Study</td>
+                <td></td>
+            </tr>
+            <tr class="helleZeile">
+                <td class="legende">2. Std.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="dunkleZeile">
+                <td class="legende">3. Std.</td>
+                <td rowspan=2 class="belegt">Business Process Improvement</td>
+                <td></td>
+                <td></td>
+                <td rowspan=2 class="belegt">IT Architektur</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="helleZeile">
+                <td class="legende">4. Std.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="dunkleZeile">
+                <td class="legende">5. Std.</td>
+                <td rowspan=2 class="belegt">IT Recht</td>
+                <td></td>
+                <td></td>
+                <td rowspan=2 class="belegt">Web Development</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="helleZeile">
+                <td class="legende">6. Std.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="dunkleZeile">
+                <td class="legende">7. Std.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="helleZeile">
+                <td class="legende">8. Std.</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">Hausaufgaben: Deutsch: S. 10-15, Mathe: S. 20-25, Englisch: S. 30-35</td>
+            </tr>
+    </table>
+</body>
+</html>

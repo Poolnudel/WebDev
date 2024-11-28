@@ -1,0 +1,112 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana;
+    font-size: 12px;
+    margin: 0px;
+}
+
+.hinweis {
+    display: none;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+}
+
+.container {
+    max-width: 1190px;
+    margin-left:auto;
+    margin-right:auto;
+    overflow:hidden;
+}
+
+.spalte {
+    width:170px;
+    float:left;
+}
+
+.zelle {
+    border:1px solid white;
+    height:35px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.legende {
+    color:white;
+    font-weight: 800;
+    background-color:#808080;
+}  
+
+.helleZeile {
+    background-color: #eeeeee;
+}
+
+.dunkleZeile {
+    background-color: #dddddd;
+}
+
+.belegt {
+    background-color: #FFEEBC;
+}
+
+.doppelstunde {
+    height: 70px;
+}
+
+.legende_vor_Samstag,
+.legende_vor_Freitag,
+.legende_vor_Donnerstag,
+.legende_vor_Mittwoch,
+.legende_vor_Dienstag {
+    display: none;
+}
+
+@media screen and (max-width: 510px) and (min-width: 340px) {
+    .legende_vor_Dienstag,
+    .legende_vor_Mittwoch,
+    .legende_vor_Donnerstag,
+    .legende_vor_Freitag,
+    .legende_vor_Samstag {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 680px) and (min-width: 510px) {
+    .legende_vor_Mittwoch {
+        display: block;
+    }
+    .legende_vor_Freitag {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 850px) and (min-width: 680px) {
+    .legende_vor_Donnerstag {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 1020px) and (min-width: 850px) {
+    .legende_vor_Freitag {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 1190px) and (min-width: 1020px) {
+    .legende_vor_Samstag {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .container {
+        display: none;
+    }
+    .hinweis {
+        display: block;
+    }
+}

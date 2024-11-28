@@ -1,0 +1,68 @@
+*
+{
+    box-sizing:border-box;
+}
+
+body
+{
+    margin:0px;
+    font-family:verdana;
+}
+
+.container
+{
+    max-width: 1200px;
+    margin-left:auto;
+    margin-right:auto;
+    border:1px solid #ccc;
+    overflow:hidden;
+}
+
+h1
+{
+    background-color:#eee;
+    text-align:center;
+    margin:0px;
+    padding:0.5em;
+}
+
+.merkmal, .eingabefeld
+{
+    float:left;
+    width:50%;
+}
+
+.zeile
+{
+    padding:0.5em;
+    overflow:hidden;
+}
+
+form
+{
+    margin:0px;
+}
+
+.fehler
+{
+    border: 1px solid red;
+    color:red;
+}
+
+@media SCREEN AND (max-width: 500px)
+{
+    .merkmal, .eingabefeld
+    {
+        width:100%;
+    }
+
+    .button
+    {
+        width:100%;
+    }
+
+    h1
+    {
+        font-size:1.5em;
+    }	
+}

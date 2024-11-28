@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mein erstes Formular</title>
+
+    </head>
+
+    <body>
+        <h1>Mein erstes Formular</h1>
+
+        <h2>Einzeiliges Textfeld</h2>
+        <form action="https://www.google.com/search">
+            <input type="text" name="q" placeholder="Suchbegriff">
+            <input type="submit" value="Suchen">
+        </form>
+
+        <h2>Ableitungen aus Einzeiliges Textfeld</h2>
+        <form action="https://www.google.com/search">
+            <input type="password" name="q1" placeholder="Suchbegriff">
+            <br>
+            <input type="hidden" value="Suchen">
+        </form>
+
+        <form action="https://www.google.com/search">
+            <input type="number" name="q2" placeholder="Suchbegriff">
+            <input type="submit" value="Suchen">
+        </form>
+
+        <form action="https://www.google.com/search">
+            <input type="email" name="q3" placeholder="Suchbegriff">
+            <input type="submit" value="Suchen">
+        </form>
+
+        <form action="https://www.google.com/search">
+            <input type="date" name="q3" placeholder="Suchbegriff">
+            <input type="submit" value="Suchen">
+        </form>
+
+        <form action="https://www.google.com/search">
+            <input type="datetime-local" name="q3" placeholder="Suchbegriff">
+            <input type="submit" value="Suchen">
+        </form>
+
+        <h2> Mehrzeiliges Textfeld</h2>
+        <form action="https://www.google.com/search">
+            <textarea name="q" placeholder="Suchbegriff"></textarea>
+            <input type="submit" value="Suchen">
+        </form>
+
+        <h2> Checkbox </h2>
+        <form action="https://www.google.com/search">
+            <input type="checkbox" name="q" value="agb_Akzeptiert" id="test" checked="check">
+            <!-- Bei Checkboxen wird, wenn sie nicht geklickt werden nichts übergeben,
+             also keine Wertidentitätsprüfung machen, da leerer Wert möglich. Stattdessen
+             Wertexistenz prüfen-->
+            <label for="test" >Akzeptierst du die AGB </label>
+            <input type="submit" value="Suchen">
+        </form>
+
+        <h2> Radio </h2>
+        <form action="https://www.google.com/search">
+            <input type="radio" name="q" value="" id="land_0" checked="check">
+            <label for="land_0" >keines </label>
+
+            <input type="radio" name="q" value="Land 1" id="land_1">
+            <label for="land_1" >Land 1 </label>
+
+            <input type="radio" name="q" value="Land 2" id="land_2">
+            <label for="land_2" >Land 2 </label>
+
+            <input type="radio" name="q" value="Land 3" id="land_3">
+            <label for="land_3" >Land 3 </label>
+            <input type="submit" value="Suchen">
+        </form>
+
+        <h2> Select </h2>
+        <form action="https://www.google.com/search">
+            <select name="q">
+                <option value="" selected="selected">keines</option>
+                <optgroup label="Europa">
+                    <option value="Land 1">Land 1</option>
+                    <option value="Land 2">Land 2</option>
+                    <option value="Land 3">Land 3</option>
+                </optgroup>
+                <optgroup label="Nordamerika">
+                    <option value="Land 4">Land 4</option>
+                    <option value="Land 5">Land 5</option>
+                    <option value="Land 6">Land 6</option>
+                </optgroup>
+                <optgroup label="Asien">
+                    <option value="Land 7">Land 7</option>
+                    <option value="Land 8">Land 8</option>
+                    <option value="Land 9">Land 9</option>
+                </optgroup>
+            </select>
+            <input type="submit" value="Suchen">
+        </form>
+
+            <form action="https://www.google.com/search">
+                <select name="q" multiple>
+                    <option value="" selected="selected">keines</option>
+                    <optgroup label="Europa">
+                        <option value="Land 1">Land 1</option>
+                        <option value="Land 2">Land 2</option>
+                        <option value="Land 3">Land 3</option>
+                    </optgroup>
+                    <optgroup label="Nordamerika">
+                        <option value="Land 4">Land 4</option>
+                        <option value="Land 5">Land 5</option>
+                        <option value="Land 6">Land 6</option>
+                    </optgroup>
+                    <optgroup label="Asien">
+                        <option value="Land 7">Land 7</option>
+                        <option value="Land 8">Land 8</option>
+                        <option value="Land 9">Land 9</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="Suchen">
+                <input type="reset" value="Zurücksetzen">
+
+            </form>
+
+        <h2>Dateiupload</h2>
+        <form action="https://www.google.com/search" enctype="multipart/form-data">
+            <input type="file" name="q">
+            <input type="submit" value="Hochladen">
+        </form>
+
+        <h2>Image</h2>
+        <form action="https://www.google.com/search">
+            <input type="image" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo">
+            <input type="submit" value="Suchen">
+        </form>
+        
+
+    </body>
+</html>
