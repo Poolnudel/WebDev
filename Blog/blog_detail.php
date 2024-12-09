@@ -4,7 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Detailseite</title>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            font-size: 2rem;
+            color: #294936;
+        }
+
+        .detail-meta {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .detail-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .comments-section {
+            margin-top: 2rem;
+        }
+
+        .comments-section h2 {
+            font-size: 1.5rem;
+            color: #294936;
+            margin-bottom: 1rem;
+        }
+
+        .comment {
+            border-top: 1px solid #ccc;
+            padding: 1rem 0;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .comment-text {
+            margin-top: 0.5rem;
+            color: #333;
+        }
+
+        .comment-form {
+            margin-top: 1.5rem;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .comment-form button {
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #294936;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+            background-color: #3E6259;
+        }
+    </style>
 </head>
 <body>
     <!-- Kopfzeile -->
@@ -29,19 +113,63 @@
         <div class="comments-section">
             <h2>Kommentare</h2>
 
-            <!-- Beispiel-Kommentar -->
-            <div class="comment">
-                <p class="comment-author">Max Mustermann</p>
-                <p class="comment-text">Das ist ein wirklich interessanter Beitrag. Danke!</p>
-            </div>
+            <div id="comments"></div>
 
             <!-- Kommentarformular -->
             <div class="comment-form">
-                <textarea rows="4" placeholder="Hinterlassen Sie einen Kommentar..."></textarea>
-                <button>Kommentar absenden</button>
+                <textarea id="comment-input" rows="4" placeholder="Hinterlassen Sie einen Kommentar..."></textarea>
+                <button onclick="addComment()">Kommentar absenden</button>
             </div>
         </div>
     </div>
+
+    <script>
+        // Temporäres Array, um Kommentare zu speichern
+        const comments = [];
+
+        function addComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+
+            if (commentText) {
+                // Kommentar dem Array hinzufügen
+                comments.push({
+                    author: 'Anonymer Nutzer',
+                    text: commentText
+                });
+
+                // Kommentar anzeigen
+                renderComments();
+
+                // Eingabefeld leeren
+                commentInput.value = '';
+            } else {
+                alert('Bitte geben Sie einen Kommentar ein.');
+            }
+        }
+
+        function renderComments() {
+            const commentsContainer = document.getElementById('comments');
+            commentsContainer.innerHTML = '';
+
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+
+                const author = document.createElement('p');
+                author.classList.add('comment-author');
+                author.textContent = comment.author;
+
+                const text = document.createElement('p');
+                text.classList.add('comment-text');
+                text.textContent = comment.text;
+
+                commentDiv.appendChild(author);
+                commentDiv.appendChild(text);
+                commentsContainer.appendChild(commentDiv);
+            });
+        }
+    </script>
 
     <!-- Fußzeile -->
     <footer>
