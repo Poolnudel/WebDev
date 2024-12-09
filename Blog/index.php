@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wirtschaftsinformatik</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
     <!-- Kopfzeile -->
-    <header>
-        <div class="header-logo">
-            <span>WInf</span>
-        </div>
+    <header style="background-color: #294936; width: 100%;">
+    <div class="header-logo" style="padding: 1em; text-align: center; color: white; font-size: 1.5em;">
+        <span>WInf</span>
+    </div>
     </header>
 
     <!-- Hero-Bereich mit Grafik und Titel -->
