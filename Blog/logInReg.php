@@ -6,6 +6,10 @@
     <title>Login / Registrierung</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #F9F9F9;
             font-family: Arial, sans-serif;
@@ -15,7 +19,7 @@
 
         .login-container {
             max-width: 400px;
-            margin: 3rem auto;
+            margin: 2rem auto;
             padding: 2rem;
             border-radius: 12px;
             background-color: #ffffff;
@@ -99,6 +103,7 @@
         header {
             background-color: #294936;
             width: 100%;
+            height: 56px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -111,6 +116,9 @@
             background-color: #294936;
             color: white;
             margin-top: 2rem;
+            width: 100%;
+            padding-left: 0px;
+            padding-right: 0px;
         }
 
         footer a {
@@ -128,10 +136,12 @@
         }
 
         .header-logo {
-            padding: 1em;
+
             display: flex;
             justify-content: center;
             align-items: center;
+            padding-left: 0px;
+            padding-right: 0px;
         }
 
     </style>
@@ -142,8 +152,7 @@
         <div class="header-logo">
             <img src="images/winf-logo.png" alt="WInf Logo">
         </div>
-    </header>
-    
+    </header> 
 
     <!-- Login / Registrierung -->
     <div class="login-container">
@@ -167,9 +176,14 @@
             </div>
         </form>
 
-        <div class="toggle-link" onclick="toggleForm()">Noch kein Konto? Jetzt registrieren</div>
+        <div class="toggle-link" onclick="toggleForm()" style="margin-bottom: 16px;">Noch kein Konto? Jetzt registrieren</div>
 
         <form id="register-form" style="display: none;" onsubmit="return validateRegister()">
+            <div class="form-group">
+                <label for="username">Benutzername</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error-message" id="register-username-error">Bitte geben Sie einen Benutzernamen ein.</div>
+            </div>
             <div class="form-group">
                 <label for="register-email">E-Mail</label>
                 <input type="email" id="register-email" name="email" required>
