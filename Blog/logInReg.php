@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Registrierung</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <style>
-        body {
-            background-color: #F9F9F9;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
 
         .login-container {
             max-width: 400px;
@@ -95,45 +89,6 @@
             margin-bottom: 1rem;
             display: none;
         }
-
-        header {
-            background-color: #294936;
-            width: 100%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #294936;
-            color: white;
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 0.5rem;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .header-logo img {
-            height: 60px;
-        }
-
-        .header-logo {
-            padding: 1em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
     </style>
 </head>
 <body>

@@ -23,6 +23,8 @@
             <p>Noch keinen Account? <a href="register.php">Registrieren</a></p>
         </div>
     </div>
+
+    <!-- Fußzeile -->
     <footer>
         <div class="footer-content">
             <a href="impressum.html">Impressum</a> | <a href="kontakt.html">Kontakt</a>

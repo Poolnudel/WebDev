@@ -23,12 +23,6 @@ body {
     color: rgb(212, 217, 210);
 }
 
-@media screen and (max-width: 768px) {
-    .veranstaltung {
-        width: 100%;
-    }
-}
-
 /*
 #######################
 Header
@@ -93,6 +87,11 @@ Startseite
 #######################
 */
 
+@media screen and (max-width: 768px) {
+    .veranstaltung {
+        width: 100%;
+    }
+}
 
 .veranstaltungen {
     display: flex;
