@@ -1,3 +1,60 @@
+<?php
+// Fehlerausgabe aktivieren
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Session starten
+session_start();
+
+// Datenbankverbindung einbinden
+include 'components/db.php';
+
+// Nachrichtenvariable initialisieren
+$popupMessage = "";
+
+// Registrierung
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm-password'];
+
+    if ($password !== $confirmPassword) {
+        $popupMessage = "Passwörter stimmen nicht überein!";
+    } else {
+        $sql = "INSERT INTO Nutzer (userEmail, userPasswort) VALUES ('$email', '$password')";
+        if (mysqli_query($conn, $sql)) {
+            $popupMessage = "Registrierung erfolgreich! Sie können sich jetzt einloggen.";
+        } else {
+            $popupMessage = "Fehler: " . mysqli_error($conn);
+        }
+    }
+}
+
+// Login
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM nutzer WHERE userEmail = '$email' AND userPasswort = '$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        // Benutzer in die Session speichern
+        $_SESSION['user_id'] = $user['userId'];
+        $_SESSION['user_email'] = $user['userEmail'];
+
+        header("Location: index.php");
+        exit;
+    } else {
+        $popupMessage = "Falsche E-Mail oder falsches Passwort.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -8,56 +65,10 @@
 </head>
 <body>
 
-    <?php
-    include 'components/header.php'; 
-    include 'components/db.php'; // Datenbankverbindung einbinden
-    session_start(); // Session starten, um Benutzerdaten zu speichern
-    $popUpMessage = ""; // Nachrichten-Variable initialisieren
+    <!-- Debug-Ausgabe für die Fehlerdiagnose -->
+    <?php echo "DEBUG: HTML STARTED"; ?>
 
-    // Registrierung
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirmPassword = $_POST['confirm-password'];
-
-        // Passwörter überprüfen
-        if ($password !== $confirmPassword) {
-            $popupMessage = "Passwörter stimmen nicht überein!";
-        } else {
-            // Nutzer in die Datenbank einfügen
-            $sql = "INSERT INTO Nutzer (userEmail, userPasswort) VALUES ('$email', '$password')";
-            if (mysqli_query($conn, $sql)) {
-                $popupMessage = "Registrierung erfolgreich! Sie können sich jetzt einloggen.";
-            } else {
-                $popupMessage = "Fehler: " . mysqli_error($conn);
-            }
-        }
-    }
-
-    // Login
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // Benutzer aus der Datenbank abrufen
-        $sql = "SELECT * FROM Nutzer WHERE userEmail = '$email' AND userPasswort = '$password'";
-        $result = mysqli_query($conn, $sql);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $user = mysqli_fetch_assoc($result);
-
-            // Benutzer in die Session speichern
-            $_SESSION['user_id'] = $user['userId'];
-            $_SESSION['user_email'] = $user['userEmail'];
-
-            header("Location: index.php"); // Weiterleitung zur Startseite
-            exit;
-        } else {
-            $popupMessage = "Falsche E-Mail oder falsches Passwort.";
-        }
-    }
-    ?>
+    <?php include 'components/header.php'; ?>
 
     <!-- Pop-up Meldung -->
     <?php if (!empty($popupMessage)): ?>

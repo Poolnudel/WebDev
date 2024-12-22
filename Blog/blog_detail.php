@@ -15,7 +15,7 @@ if (isset($_GET['kursId']) && is_numeric($_GET['kursId'])) {
     $kursId = (int) $_GET['kursId']; // kursId aus der URL holen und sicherstellen, dass es eine Zahl ist
 
     // Beitrag aus der Datenbank abrufen
-    $beitragSql = "SELECT kursTitel, kursText, kursBild FROM Beitrag WHERE kursId = $kursId";
+    $beitragSql = "SELECT kursTitel, kursText, kursBild FROM beitrag WHERE kursId = $kursId";
     $beitragResult = mysqli_query($conn, $beitragSql);
 
     if ($beitragResult && mysqli_num_rows($beitragResult) > 0) {
@@ -25,10 +25,10 @@ if (isset($_GET['kursId']) && is_numeric($_GET['kursId'])) {
     }
 
     // Kommentare zu diesem Beitrag abrufen
-    $kommentareSql = "SELECT Nutzer.userEmail, Kommentare.kommentarTitel, Kommentare.kommentarText, Kommentare.kommentarBild 
-                      FROM Kommentare
-                      JOIN Nutzer ON Kommentare.userId = Nutzer.userId
-                      WHERE Kommentare.kursId = $kursId";
+    $kommentareSql = "SELECT nutzer.userEmail, kommentare.kommentarTitel, kommentare.kommentarText, kommentare.kommentarBild 
+                      FROM kommentare
+                      JOIN nutzer ON kommentare.userId = nutzer.userId
+                      WHERE kommentare.kursId = $kursId";
     $kommentareResult = mysqli_query($conn, $kommentareSql);
 } else {
     die("Ungültige Kurs-ID.");
