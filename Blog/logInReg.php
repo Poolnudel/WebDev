@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Registrierung</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <style>
         * {
             box-sizing: border-box;
@@ -147,12 +147,8 @@
     </style>
 </head>
 <body>
-    <!-- Kopfzeile -->
-    <header class="header-logo">
-        <div class="header-logo">
-            <img src="images/winf-logo.png" alt="WInf Logo">
-        </div>
-    </header> 
+
+    <?php include 'components/header.php'; ?>
 
     <!-- Login / Registrierung -->
     <div class="login-container">
@@ -290,11 +286,6 @@
         }
     </script>
 
-    <!-- Fußzeile -->
-    <footer>
-        <div class="footer-content">
-            <a href="impressum.html">Impressum</a> | <a href="kontakt.html">Kontakt</a>
-        </div>
-    </footer>
+    <?php include 'components/footer.php'; ?>
 </body>
 </html>

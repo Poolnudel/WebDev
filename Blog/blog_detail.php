@@ -1,181 +1,97 @@
+<?php
+// Einfache Datenbankverbindung
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "blogbase";
+
+// Verbindung zur Datenbank herstellen
+$conn = mysqli_connect($host, $username, $password, $database);
+
+// Prüfen, ob die Verbindung erfolgreich ist
+if (!$conn) {
+    die("Datenbankverbindung fehlgeschlagen: " . mysqli_connect_error());
+}
+
+// Prüfen, ob kursId in der URL übergeben wurde
+if (isset($_GET['kursId']) && is_numeric($_GET['kursId'])) {
+    $kursId = (int) $_GET['kursId']; // kursId aus der URL holen und sicherstellen, dass es eine Zahl ist
+
+    // Beitrag aus der Datenbank abrufen
+    $beitragSql = "SELECT kursTitel, kursText, kursBild FROM Beitrag WHERE kursId = $kursId";
+    $beitragResult = mysqli_query($conn, $beitragSql);
+
+    if ($beitragResult && mysqli_num_rows($beitragResult) > 0) {
+        $beitrag = mysqli_fetch_assoc($beitragResult);
+    } else {
+        die("Beitrag nicht gefunden.");
+    }
+
+    // Kommentare zu diesem Beitrag abrufen
+    $kommentareSql = "SELECT Nutzer.userEmail, Kommentare.kommentarTitel, Kommentare.kommentarText, Kommentare.kommentarBild 
+                      FROM Kommentare
+                      JOIN Nutzer ON Kommentare.userId = Nutzer.userId
+                      WHERE Kommentare.kursId = $kursId";
+    $kommentareResult = mysqli_query($conn, $kommentareSql);
+} else {
+    die("Ungültige Kurs-ID.");
+}
+
+// Datenbankverbindung wird am Ende geschlossen
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Detailseite</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .detail-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .detail-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .detail-title {
-            font-size: 2rem;
-            color: #294936;
-        }
-
-        .detail-meta {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 1rem;
-        }
-
-        .detail-content {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .comments-section {
-            margin-top: 2rem;
-        }
-
-        .comments-section h2 {
-            font-size: 1.5rem;
-            color: #294936;
-            margin-bottom: 1rem;
-        }
-
-        .comment {
-            border-top: 1px solid #ccc;
-            padding: 1rem 0;
-        }
-
-        .comment-author {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .comment-text {
-            margin-top: 0.5rem;
-            color: #333;
-        }
-
-        .comment-form {
-            margin-top: 1.5rem;
-        }
-
-        .comment-form textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .comment-form button {
-            margin-top: 0.5rem;
-            padding: 0.5rem 1rem;
-            background-color: #294936;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .comment-form button:hover {
-            background-color: #3E6259;
-        }
-    </style>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <!-- Kopfzeile -->
-    <header style="background-color: #294936; width: 100%;">
-        <div class="header-logo" style="padding: 1em; text-align: center; color: white; font-size: 1.5em;">
-            <span>WInf</span>
-        </div>
-    </header>
+    <?php include 'components/header.php'; ?>
 
     <!-- Detailansicht -->
     <div class="detail-container">
         <div class="detail-header">
-            <h1 class="detail-title">Blogeintrag Titel</h1>
-            <p class="detail-meta">Verfasst von Autorname am 01.01.2024</p>
+            <h1 class="detail-title"><?= htmlspecialchars($beitrag['kursTitel']); ?></h1>
+            <p class="detail-meta">Beitrag ID: <?= htmlspecialchars($kursId); ?></p>
         </div>
 
         <div class="detail-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel nisi id nisl tempor vehicula. Nulla facilisi. Duis volutpat, nisl et suscipit fermentum, lacus erat euismod sapien, eget ullamcorper orci mi vitae velit.</p>
-            <p>Quisque ut sapien nec lorem tincidunt condimentum. Phasellus congue consequat libero, at vehicula est efficitur non.</p>
+            <img src="images/<?= htmlspecialchars($beitrag['kursBild']); ?>" alt="Beitragsbild" style="max-width: 100%; margin-bottom: 1rem;">
+            <p><?= nl2br(htmlspecialchars($beitrag['kursText'])); ?></p>
         </div>
 
         <div class="comments-section">
             <h2>Kommentare</h2>
-
-            <div id="comments"></div>
+            
+            <?php if ($kommentareResult && mysqli_num_rows($kommentareResult) > 0): ?>
+                <?php while ($kommentar = mysqli_fetch_assoc($kommentareResult)): ?>
+                    <div class="comment">
+                        <p class="comment-author"><?= htmlspecialchars($kommentar['userEmail']); ?></p>
+                        <p class="comment-title"><?= htmlspecialchars($kommentar['kommentarTitel']); ?></p>
+                        <p class="comment-text"><?= nl2br(htmlspecialchars($kommentar['kommentarText'])); ?></p>
+                        <?php if ($kommentar['kommentarBild']): ?>
+                            <img src="images/<?= htmlspecialchars($kommentar['kommentarBild']); ?>" alt="Kommentarbild" style="max-width: 100%;">
+                        <?php endif; ?>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>Keine Kommentare vorhanden.</p>
+            <?php endif; ?>
 
             <!-- Kommentarformular -->
             <div class="comment-form">
-                <textarea id="comment-input" rows="4" placeholder="Hinterlassen Sie einen Kommentar..."></textarea>
-                <button onclick="addComment()">Kommentar absenden</button>
+                <form method="POST" action="add_comment.php">
+                    <textarea name="comment" rows="4" placeholder="Hinterlassen Sie einen Kommentar..."></textarea>
+                    <button type="submit">Kommentar absenden</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <script>
-        // Temporäres Array, um Kommentare zu speichern
-        const comments = [];
-
-        function addComment() {
-            const commentInput = document.getElementById('comment-input');
-            const commentText = commentInput.value.trim();
-
-            if (commentText) {
-                // Kommentar dem Array hinzufügen
-                comments.push({
-                    author: 'Anonymer Nutzer',
-                    text: commentText
-                });
-
-                // Kommentar anzeigen
-                renderComments();
-
-                // Eingabefeld leeren
-                commentInput.value = '';
-            } else {
-                alert('Bitte geben Sie einen Kommentar ein.');
-            }
-        }
-
-        function renderComments() {
-            const commentsContainer = document.getElementById('comments');
-            commentsContainer.innerHTML = '';
-
-            comments.forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comment');
-
-                const author = document.createElement('p');
-                author.classList.add('comment-author');
-                author.textContent = comment.author;
-
-                const text = document.createElement('p');
-                text.classList.add('comment-text');
-                text.textContent = comment.text;
-
-                commentDiv.appendChild(author);
-                commentDiv.appendChild(text);
-                commentsContainer.appendChild(commentDiv);
-            });
-        }
-    </script>
-
-    <!-- Fußzeile -->
-    <footer>
-        <div class="footer-content">
-            <a href="impressum.html">Impressum</a> | <a href="kontakt.html">Kontakt</a>
-        </div>
-    </footer>
+    <?php include 'components/footer.php'; ?>
 </body>
 </html>
