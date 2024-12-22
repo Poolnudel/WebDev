@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <!-- Kopfzeile -->
-    <header>
-        <div class="header-logo">
-            <img src="images/winf-logo.png" alt="WInf Logo">
-        </div>
-    </header>
+
+    <?php
+    session_start();
+    // Prüfen, ob der Benutzer eingeloggt ist
+    if (!isset($_SESSION['user_id'])) {
+        // Benutzer ist nicht eingeloggt, Weiterleitung zur Login-Seite
+        header("Location: logInReg.php");
+        exit;
+    }
+
+    include 'components/header.php'; // Header einbinden
+    ?>
 
     <!-- Hero-Bereich mit Grafik und Titel -->
     <section class="hero">
@@ -52,11 +58,6 @@
         </a>
     </section>
 
-    <!-- Fußzeile -->
-    <footer>
-        <div class="footer-content">
-            <a href="impressum.html">Impressum</a> | <a href="kontakt.html">Kontakt</a>
-        </div>
-    </footer>
+    <?php include 'components/footer.php'; // Footer einbinden ?>
 </body>
 </html>

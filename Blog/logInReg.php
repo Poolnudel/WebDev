@@ -8,7 +8,63 @@
 </head>
 <body>
 
-    <?php include 'components/header.php'; ?>
+    <?php
+    include 'components/header.php'; 
+    include 'components/db.php'; // Datenbankverbindung einbinden
+    session_start(); // Session starten, um Benutzerdaten zu speichern
+    $popUpMessage = ""; // Nachrichten-Variable initialisieren
+
+    // Registrierung
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirmPassword = $_POST['confirm-password'];
+
+        // Passwörter überprüfen
+        if ($password !== $confirmPassword) {
+            $popupMessage = "Passwörter stimmen nicht überein!";
+        } else {
+            // Nutzer in die Datenbank einfügen
+            $sql = "INSERT INTO Nutzer (userEmail, userPasswort) VALUES ('$email', '$password')";
+            if (mysqli_query($conn, $sql)) {
+                $popupMessage = "Registrierung erfolgreich! Sie können sich jetzt einloggen.";
+            } else {
+                $popupMessage = "Fehler: " . mysqli_error($conn);
+            }
+        }
+    }
+
+    // Login
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Benutzer aus der Datenbank abrufen
+        $sql = "SELECT * FROM Nutzer WHERE userEmail = '$email' AND userPasswort = '$password'";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+
+            // Benutzer in die Session speichern
+            $_SESSION['user_id'] = $user['userId'];
+            $_SESSION['user_email'] = $user['userEmail'];
+
+            header("Location: index.php"); // Weiterleitung zur Startseite
+            exit;
+        } else {
+            $popupMessage = "Falsche E-Mail oder falsches Passwort.";
+        }
+    }
+    ?>
+
+    <!-- Pop-up Meldung -->
+    <?php if (!empty($popupMessage)): ?>
+        <script>
+            alert("<?= $popupMessage; ?>");
+        </script>
+    <?php endif; ?>
 
     <!-- Login / Registrierung -->
     <div class="login-container">
@@ -16,47 +72,41 @@
             <h1>Login</h1>
         </div>
 
-        <form id="login-form" onsubmit="return validateLogin()">
+        <form id="login-form" method="POST">
             <div class="form-group">
                 <label for="email">E-Mail</label>
                 <input type="email" id="email" name="email" required>
-                <div class="error-message" id="login-email-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
             </div>
             <div class="form-group">
                 <label for="password">Passwort</label>
                 <input type="password" id="password" name="password" required>
-                <div class="error-message" id="login-password-error">Bitte geben Sie ein Passwort ein.</div>
             </div>
             <div class="form-group">
-                <button type="submit">Einloggen</button>
+                <button type="submit" name="login">Einloggen</button>
             </div>
         </form>
 
         <div class="toggle-link" onclick="toggleForm()" style="margin-bottom: 16px;">Noch kein Konto? Jetzt registrieren</div>
 
-        <form id="register-form" style="display: none;" onsubmit="return validateRegister()">
+        <form id="register-form" method="POST" style="display: none;">
             <div class="form-group">
                 <label for="username">Benutzername</label>
                 <input type="text" id="username" name="username" required>
-                <div class="error-message" id="register-username-error">Bitte geben Sie einen Benutzernamen ein.</div>
             </div>
             <div class="form-group">
-                <label for="register-email">E-Mail</label>
-                <input type="email" id="register-email" name="email" required>
-                <div class="error-message" id="register-email-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="register-password">Passwort</label>
-                <input type="password" id="register-password" name="password" required>
-                <div class="error-message" id="register-password-error">Bitte geben Sie ein Passwort ein.</div>
+                <label for="password">Passwort</label>
+                <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Passwort bestätigen</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
-                <div class="error-message" id="confirm-password-error">Passwörter stimmen nicht überein.</div>
             </div>
             <div class="form-group">
-                <button type="submit">Registrieren</button>
+                <button type="submit" name="register">Registrieren</button>
             </div>
         </form>
     </div>
@@ -76,73 +126,6 @@
                 registerForm.style.display = 'block';
                 toggleLink.textContent = 'Bereits ein Konto? Jetzt einloggen';
             }
-        }
-
-        function validateLogin() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const emailError = document.getElementById('login-email-error');
-            const passwordError = document.getElementById('login-password-error');
-
-            let isValid = true;
-
-            if (!email) {
-                emailError.style.display = 'block';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            if (!password) {
-                passwordError.style.display = 'block';
-                isValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-
-            if (isValid) {
-                window.location.href = 'index.php';
-            }
-
-            return isValid;
-        }
-
-        function validateRegister() {
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            const emailError = document.getElementById('register-email-error');
-            const passwordError = document.getElementById('register-password-error');
-            const confirmPasswordError = document.getElementById('confirm-password-error');
-
-            let isValid = true;
-
-            if (!email) {
-                emailError.style.display = 'block';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            if (!password) {
-                passwordError.style.display = 'block';
-                isValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-
-            if (password !== confirmPassword) {
-                confirmPasswordError.style.display = 'block';
-                isValid = false;
-            } else {
-                confirmPasswordError.style.display = 'none';
-            }
-
-            if (isValid) {
-                window.location.href = 'index.php';
-            }
-
-            return isValid;
         }
     </script>
 
