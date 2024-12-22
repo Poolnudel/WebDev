@@ -1,17 +1,6 @@
 <?php
-// Einfache Datenbankverbindung
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "blogbase";
-
 // Verbindung zur Datenbank herstellen
-$conn = mysqli_connect($host, $username, $password, $database);
-
-// Prüfen, ob die Verbindung erfolgreich ist
-if (!$conn) {
-    die("Datenbankverbindung fehlgeschlagen: " . mysqli_connect_error());
-}
+include 'components/db.php';
 
 // Prüfen, ob kursId in der URL übergeben wurde
 if (isset($_GET['kursId']) && is_numeric($_GET['kursId'])) {

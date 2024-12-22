@@ -22,34 +22,34 @@
 
     <!-- Galerie für Veranstaltungen -->
     <section class="veranstaltungen">
-        <div class="veranstaltung">
+        <a href="blog_detail.php?kursId=1" class="veranstaltung">
             <div class="text">
                 Application Development
             </div>
             <div class="image" style="background-image: url('images/kachel_appDev.webp');">
             </div>
-        </div>
-        <div class="veranstaltung">
+        </a>
+        <a href="blog_detail.php?kursId=2" class="veranstaltung">
             <div class="text">
                 Web Development
             </div>
             <div class="image" style="background-image: url('images/kachel_webDev.png');">
             </div>
-        </div>
-        <div class="veranstaltung">
+        </a>
+        <a href="blog_detail.php?kursId=3" class="veranstaltung">
             <div class="text">
                 IT Infrastrukturen
             </div>
             <div class="image" style="background-image: url('images/kachel_itInfrastructure.webp');">
             </div>
-        </div>
-        <div class="veranstaltung">
+        </a>
+        <a href="blog_detail.php?kursId=4" class="veranstaltung">
             <div class="text">
                 IT Architekturen
             </div>
             <div class="image" style="background-image: url('images/kachel_itArchitecture.jpg');">
             </div>
-        </div>
+        </a>
     </section>
 
     <!-- Fußzeile -->
