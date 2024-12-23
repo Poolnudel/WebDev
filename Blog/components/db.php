@@ -1,5 +1,19 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "blogbase");
+//live zugang
+/*
+$servername = "localhost";
+$username = "gruppe1";
+$password = "qSD42Ic!5f";
+$dbname = "gruppe1";
+*/
+
+//local zugang
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "blogbase";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Prüfen, ob die Verbindung erfolgreich ist
 if (!$conn) {
