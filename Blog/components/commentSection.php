@@ -5,22 +5,6 @@ if (!isset($_GET['kursId']) || !is_numeric($_GET['kursId'])) {
 }
 $kursId = (int)$_GET['kursId'];
 
-// Verarbeitung des Kommentarformulars
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit-comment'])) {
-    $userId = $_SESSION['user_id']; // Eingeloggter Nutzer
-    $commentTitle = mysqli_real_escape_string($conn, $_POST['comment-title']);
-    $commentText = mysqli_real_escape_string($conn, $_POST['comment-text']);
-
-    // Kommentar in die Datenbank speichern
-    $sql = "INSERT INTO kommentare (userId, kommentarTitel, kommentarText, kursId) 
-            VALUES ('$userId', '$commentTitle', '$commentText', '$kursId')";
-    if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Kommentar erfolgreich hinzugefügt!');</script>";
-    } else {
-        echo "<script>alert('Fehler beim Speichern des Kommentars: " . mysqli_error($conn) . "');</script>";
-    }
-}
-
 // Kommentare aus der Datenbank abrufen
 $sql = "SELECT nutzer.userEmail, kommentare.kommentarTitel, kommentare.kommentarText 
         FROM kommentare
@@ -47,7 +31,7 @@ $result = mysqli_query($conn, $sql);
     <?php endif; ?>
 
     <!-- Kommentarformular -->
-    <form method="POST">
+    <form method="POST" action="addComment.php?kursId=<?= $kursId; ?>">
         <div class="form-group">
             <label for="comment-title">Titel</label>
             <input type="text" id="comment-title" name="comment-title" required>
