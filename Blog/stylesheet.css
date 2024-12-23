@@ -41,6 +41,10 @@ header {
     padding-right: 0px;
 }
 
+nav {
+    background-color: #294936;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -105,9 +109,6 @@ Veranstaltungen
 .veranstaltungen {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    padding: 2rem;
-    justify-content: center;
     gap: 1.5rem;
     padding: 2rem;
     justify-content: center;

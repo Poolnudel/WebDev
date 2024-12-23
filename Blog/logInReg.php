@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Registrierung</title>
     <link rel="stylesheet" href="stylesheet.css">
+    <link rel="icon" type="image/png" href="images/winf-logo.png">
 </head>
 <body>
     <?php 

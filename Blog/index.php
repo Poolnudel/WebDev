@@ -6,6 +6,7 @@
     <title>Wirtschaftsinformatik</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheet.css">
+    <link rel="icon" type="image/png" href="images/winf-logo.png">
 </head>
 <body>
 
@@ -20,6 +21,8 @@
 
     include 'components/header.php'; // Header einbinden
     ?>
+
+    <?php include 'components/navbar.php'; // Navbar einbinden ?>
 
     <!-- Hero-Bereich mit Grafik und Titel -->
     <section class="hero">
