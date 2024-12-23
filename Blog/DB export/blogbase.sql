@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 22. Dez 2024 um 16:10
--- Server-Version: 10.4.32-MariaDB
--- PHP-Version: 8.2.12
+-- Generation Time: Dec 23, 2024 at 01:08 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `blogbase`
+-- Database: `blogbase`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `beitrag`
+-- Table structure for table `beitrag`
 --
 
 CREATE TABLE `beitrag` (
@@ -35,7 +35,7 @@ CREATE TABLE `beitrag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `beitrag`
+-- Dumping data for table `beitrag`
 --
 
 INSERT INTO `beitrag` (`kursId`, `kursTitel`, `kursText`, `kursBild`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `beitrag` (`kursId`, `kursTitel`, `kursText`, `kursBild`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `kommentare`
+-- Table structure for table `kommentare`
 --
 
 CREATE TABLE `kommentare` (
@@ -59,7 +59,7 @@ CREATE TABLE `kommentare` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `kommentare`
+-- Dumping data for table `kommentare`
 --
 
 INSERT INTO `kommentare` (`kommentarId`, `userId`, `kommentarTitel`, `kommentarText`, `kommentarBild`, `kursId`) VALUES
@@ -70,7 +70,29 @@ INSERT INTO `kommentare` (`kommentarId`, `userId`, `kommentarTitel`, `kommentarT
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `nutzer`
+-- Table structure for table `kurse`
+--
+
+CREATE TABLE `kurse` (
+  `kurs_id` int(11) NOT NULL,
+  `kurs_kurz_name` varchar(10) NOT NULL,
+  `kurs_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kurse`
+--
+
+INSERT INTO `kurse` (`kurs_id`, `kurs_kurz_name`, `kurs_name`) VALUES
+(1, 'App Dev', 'Application Development'),
+(2, 'Web Dev', 'Web Development'),
+(3, 'IT Inf', 'IT Infrasktrukturen'),
+(4, 'Architekur', 'IT Architekturen');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nutzer`
 --
 
 CREATE TABLE `nutzer` (
@@ -80,7 +102,7 @@ CREATE TABLE `nutzer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `nutzer`
+-- Dumping data for table `nutzer`
 --
 
 INSERT INTO `nutzer` (`userId`, `userEmail`, `userPasswort`) VALUES
@@ -89,56 +111,68 @@ INSERT INTO `nutzer` (`userId`, `userEmail`, `userPasswort`) VALUES
 (3, 'user3@example.com', 'sicher321');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `beitrag`
+-- Indexes for table `beitrag`
 --
 ALTER TABLE `beitrag`
   ADD PRIMARY KEY (`kursId`);
 
 --
--- Indizes für die Tabelle `kommentare`
+-- Indexes for table `kommentare`
 --
 ALTER TABLE `kommentare`
   ADD PRIMARY KEY (`kommentarId`),
   ADD KEY `userId` (`userId`);
 
 --
--- Indizes für die Tabelle `nutzer`
+-- Indexes for table `kurse`
+--
+ALTER TABLE `kurse`
+  ADD PRIMARY KEY (`kurs_id`);
+
+--
+-- Indexes for table `nutzer`
 --
 ALTER TABLE `nutzer`
   ADD PRIMARY KEY (`userId`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `beitrag`
+-- AUTO_INCREMENT for table `beitrag`
 --
 ALTER TABLE `beitrag`
   MODIFY `kursId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `kommentare`
+-- AUTO_INCREMENT for table `kommentare`
 --
 ALTER TABLE `kommentare`
   MODIFY `kommentarId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `nutzer`
+-- AUTO_INCREMENT for table `kurse`
+--
+ALTER TABLE `kurse`
+  MODIFY `kurs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `nutzer`
 --
 ALTER TABLE `nutzer`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `kommentare`
+-- Constraints for table `kommentare`
 --
 ALTER TABLE `kommentare`
   ADD CONSTRAINT `kommentare_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `nutzer` (`userId`);
