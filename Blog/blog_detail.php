@@ -7,35 +7,32 @@
         exit;
     }
 
-// Verbindung zur Datenbank herstellen
-include 'components/db.php';
+    // Verbindung zur Datenbank herstellen
+    include 'components/db.php';
 
-// Prüfen, ob kursId in der URL übergeben wurde
-if (isset($_GET['kursId']) && is_numeric($_GET['kursId'])) {
-    $kursId = (int) $_GET['kursId']; // kursId aus der URL holen und sicherstellen, dass es eine Zahl ist
+    // Prüfen, ob kursId in der URL übergeben wurde
+    if (isset($_GET['kursId']) && is_numeric($_GET['kursId'])) {
+        $kursId = (int) $_GET['kursId']; // kursId aus der URL holen und sicherstellen, dass es eine Zahl ist
 
-    // Beitrag aus der Datenbank abrufen
-    $beitragSql = "SELECT kursTitel, kursText, kursBild FROM beitrag WHERE kursId = $kursId";
-    $beitragResult = mysqli_query($conn, $beitragSql);
+        // Beitrag aus der Datenbank abrufen
+        $beitragSql = "SELECT kursTitel, kursText, kursBild FROM beitrag WHERE kursId = $kursId";
+        $beitragResult = mysqli_query($conn, $beitragSql);
 
-    if ($beitragResult && mysqli_num_rows($beitragResult) > 0) {
-        $beitrag = mysqli_fetch_assoc($beitragResult);
+        if ($beitragResult && mysqli_num_rows($beitragResult) > 0) {
+            $beitrag = mysqli_fetch_assoc($beitragResult);
+        } else {
+            die("Beitrag nicht gefunden.");
+        }
+
+        // Kommentare zu diesem Beitrag abrufen
+        $kommentareSql = "SELECT nutzer.userEmail, kommentare.kommentarTitel, kommentare.kommentarText, kommentare.kommentarBild 
+                        FROM kommentare
+                        JOIN nutzer ON kommentare.userId = nutzer.userId
+                        WHERE kommentare.kursId = $kursId";
+        $kommentareResult = mysqli_query($conn, $kommentareSql);
     } else {
-        die("Beitrag nicht gefunden.");
+        die("Ungültige Kurs-ID.");
     }
-
-    // Kommentare zu diesem Beitrag abrufen
-    $kommentareSql = "SELECT nutzer.userEmail, kommentare.kommentarTitel, kommentare.kommentarText, kommentare.kommentarBild 
-                      FROM kommentare
-                      JOIN nutzer ON kommentare.userId = nutzer.userId
-                      WHERE kommentare.kursId = $kursId";
-    $kommentareResult = mysqli_query($conn, $kommentareSql);
-} else {
-    die("Ungültige Kurs-ID.");
-}
-
-// Datenbankverbindung wird am Ende geschlossen
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -61,34 +58,16 @@ mysqli_close($conn);
             <p><?= nl2br(htmlspecialchars($beitrag['kursText'])); ?></p>
         </div>
 
-        <div class="comments-section">
-            <h2>Kommentare</h2>
-            
-            <?php if ($kommentareResult && mysqli_num_rows($kommentareResult) > 0): ?>
-                <?php while ($kommentar = mysqli_fetch_assoc($kommentareResult)): ?>
-                    <div class="comment">
-                        <p class="comment-author"><?= htmlspecialchars($kommentar['userEmail']); ?></p>
-                        <p class="comment-title"><?= htmlspecialchars($kommentar['kommentarTitel']); ?></p>
-                        <p class="comment-text"><?= nl2br(htmlspecialchars($kommentar['kommentarText'])); ?></p>
-                        <?php if ($kommentar['kommentarBild']): ?>
-                            <img src="images/<?= htmlspecialchars($kommentar['kommentarBild']); ?>" alt="Kommentarbild" style="max-width: 100%;">
-                        <?php endif; ?>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>Keine Kommentare vorhanden.</p>
-            <?php endif; ?>
+        <?php
+            include 'components/commentSection.php';
+        ?>
 
-            <!-- Kommentarformular -->
-            <div class="comment-form">
-                <form method="POST" action="add_comment.php">
-                    <textarea name="comment" rows="4" placeholder="Hinterlassen Sie einen Kommentar..."></textarea>
-                    <button type="submit">Kommentar absenden</button>
-                </form>
-            </div>
-        </div>
     </div>
 
-    <?php include 'components/footer.php'; ?>
+    <?php include 'components/footer.php'; 
+    // Datenbankverbindung wird am Ende geschlossen
+    mysqli_close($conn);
+    ?>
 </body>
+
 </html>

@@ -1,6 +1,9 @@
 <header class="header-logo">
     <div class="header-logo">
-        <img src="images/winf-logo.png" alt="WInf Logo">
+        <a href="index.php">
+            <img src="images/winf-logo.png" alt="WInf Logo">
+        </a>
     </div>
 </header>
+
 

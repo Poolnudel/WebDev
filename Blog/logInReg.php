@@ -64,14 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
+    <?php 
+    include 'components/header.php';
 
-    <!-- Debug-Ausgabe für die Fehlerdiagnose -->
-    <?php echo "DEBUG: HTML STARTED"; ?>
-
-    <?php include 'components/header.php'; ?>
-
-    <!-- Pop-up Meldung -->
-    <?php if (!empty($popupMessage)): ?>
+    // Pop-up Meldung
+    if (!empty($popupMessage)): ?>
         <script>
             alert("<?= $popupMessage; ?>");
         </script>
