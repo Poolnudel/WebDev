@@ -90,7 +90,7 @@ Hero-Bereich
 */
 .hero {
     text-align: center;
-    padding: 0.75rem;
+    padding: 0px;
     background: linear-gradient(to right, #294936, #3E6259);
     color: white;
 }

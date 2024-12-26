@@ -21,7 +21,7 @@ function getCourses($conn) {
 $courses = getCourses($conn);
 ?>
 
-<nav>
+<nav class="hero">
     <ul>
         <!-- Link zur Homepage -->
         <li><a href="index.php">Home</a></li>

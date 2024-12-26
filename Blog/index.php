@@ -25,9 +25,11 @@
     <?php include 'components/navbar.php'; ?>
 
     <!-- Hero-Bereich mit Grafik und Titel -->
+    <!--     
     <section class="hero">
         <h1>Vorlesungsveranstaltungen der Wirtschaftsinformatik</h1>
-    </section>
+    </section> 
+    -->
 
     <!-- Galerie für Veranstaltungen -->
     <section class="veranstaltungen">
