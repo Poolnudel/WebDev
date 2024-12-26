@@ -1,25 +1,35 @@
 <?php
-// Prüfen, ob kursId übergeben wurde
+// Sicherstellen, dass kursId aus dem GET-Array verfügbar ist
 if (!isset($_GET['kursId']) || !is_numeric($_GET['kursId'])) {
-    die("Ungültige Kurs-ID.");
+    echo "<p>Fehler: Ungültige oder fehlende Kurs-ID.</p>";
+    return;
 }
-$kursId = (int)$_GET['kursId'];
 
-// Kommentare aus der Datenbank abrufen
+$kursId = (int)$_GET['kursId']; // Kurs-ID aus der URL
+
+// SQL-Abfrage, um Kommentare und die Nutzer-E-Mail zu laden
 $sql = "SELECT nutzer.userEmail, kommentare.kommentarTitel, kommentare.kommentarText 
         FROM kommentare
         JOIN nutzer ON kommentare.userId = nutzer.userId
-        WHERE kommentare.kursId = $kursId
-        ORDER BY kommentare.id DESC";
-$result = mysqli_query($conn, $sql);
+        WHERE kommentare.kursId = $kursId";
+
+include 'db.php';
+
+$comments = mysqli_query($conn, $sql);
+
+// Prüfen, ob die Abfrage erfolgreich war
+if (!$comments) {
+    echo "<p>Fehler beim Abrufen der Kommentare: " . mysqli_error($conn) . "</p>";
+    return;
+}
 ?>
 
 <div class="comments-section">
     <h2>Kommentare</h2>
 
     <!-- Kommentare anzeigen -->
-    <?php if ($result && mysqli_num_rows($result) > 0): ?>
-        <?php while ($comment = mysqli_fetch_assoc($result)): ?>
+    <?php if (mysqli_num_rows($comments) > 0): ?>
+        <?php while ($comment = mysqli_fetch_assoc($comments)): ?>
             <div class="comment">
                 <p class="comment-author"><?= htmlspecialchars($comment['userEmail']); ?></p>
                 <p class="comment-title"><?= htmlspecialchars($comment['kommentarTitel']); ?></p>
@@ -43,3 +53,4 @@ $result = mysqli_query($conn, $sql);
         <button type="submit" name="submit-comment">Kommentar absenden</button>
     </form>
 </div>
+
