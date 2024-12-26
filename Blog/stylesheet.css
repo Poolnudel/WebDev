@@ -93,6 +93,9 @@ Hero-Bereich
     padding: 0px;
     background: linear-gradient(to right, #294936, #3E6259);
     color: white;
+    position: relative;
+    z-index: 900; /* Nav bar über anderen Inhalten, sonst von grafiken verdeckt */
+	position: sticky;
 }
 
 .hero h1 {
@@ -215,55 +218,79 @@ Blog Detailansicht
     color: #333;
 }
 
-.comments-section {
-    margin-top: 2rem;
-}
-
-.comments-section h2 {
-    font-size: 1.5rem;
-    color: #294936;
-    margin-bottom: 1rem;
-}
+/*
+#######################
+Kommentare
+#######################
+*/
 
 .comment {
     border-top: 1px solid #ccc;
     padding: 1rem 0;
+    display: flex;
+    flex-direction: column; /* Autor und Titel getrennt */
+    gap: 0.5rem;
 }
 
 .comment-author {
     font-weight: bold;
     color: #555;
+    margin-bottom: 0.25rem;
+}
+
+.comment-title {
+    font-size: 1.2rem;
+    color: #294936;
+    margin-bottom: 0.5rem;
+}
+
+.comment-body {
+    display: flex; /* Text und Bild nebeneinander */
+    gap: 1rem;
+    align-items: flex-start;
 }
 
 .comment-text {
-    margin-top: 0.5rem;
+    flex: 1; /* Text nimmt den verfügbaren Platz ein */
     color: #333;
+    line-height: 1.6;
 }
 
-.comment-form {
-    margin-top: 1.5rem;
+.comment img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Bild skaliert und beschnitten */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.comment-form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+.comment-buttons {
+    display: flex;
+    justify-content: flex-end; /* Buttons nach rechts ausrichten */
+    gap: 0.5rem; /* Abstand zwischen den Buttons */
+    margin-top: 1rem; /* Abstand oberhalb der Buttons */
 }
 
-.comment-form button {
-    margin-top: 0.5rem;
+.comment-buttons button {
     padding: 0.5rem 1rem;
     background-color: #294936;
-    color: #ffffff;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.comment-form button:hover {
+.comment-buttons button:hover {
     background-color: #3E6259;
+}
+
+.delete-comment-button {
+    background-color: #d9534f;
+}
+
+.delete-comment-button:hover {
+    background-color: #c9302c;
 }
 
 /* 
