@@ -67,10 +67,12 @@
 
     </div>
 
-    <?php include 'components/footer.php'; 
-    // Datenbankverbindung wird am Ende geschlossen
-    mysqli_close($conn);
-    ?>
+    
 </body>
+
+<?php include 'components/footer.php'; 
+// Datenbankverbindung wird am Ende geschlossen
+mysqli_close($conn);
+?>
 
 </html>

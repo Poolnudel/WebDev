@@ -11,7 +11,7 @@ $dbname = "gruppe1";
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "blogbase";
+$dbname = "gruppe1";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 

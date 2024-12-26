@@ -22,7 +22,7 @@
     include 'components/header.php'; // Header einbinden
     ?>
 
-    <?php include 'components/navbar.php'; // Navbar einbinden ?>
+    <?php include 'components/navbar.php'; ?>
 
     <!-- Hero-Bereich mit Grafik und Titel -->
     <section class="hero">

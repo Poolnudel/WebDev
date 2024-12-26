@@ -4,14 +4,14 @@ include 'db.php';
 
 // Funktion, um die Kurse aus der Datenbank zu laden
 function getCourses($conn) {
-    $sql = "SELECT kurs_id, kurs_kurz_name FROM kurse";
+    $sql = "SELECT beitrag.kursId, beitrag.kursTitel FROM beitrag";
     $result = $conn->query($sql);
     $courses = [];
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $courses[] = [
-                'id' => $row['kurs_id'],
-                'name' => $row['kurs_kurz_name']
+                'id' => $row['kursId'],
+                'name' => $row['kursTitel']
             ];
         }
     }

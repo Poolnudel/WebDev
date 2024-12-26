@@ -381,5 +381,55 @@ footer a:hover {
 Modal (wieder entfernt)
 #######################
 */
+.modal {
+    display: none; /* Modal ist initial ausgeblendet */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
+    z-index: 1000; /* Modal über anderen Inhalten */
+}
 
+.modal-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 1rem;
+    background-color: white;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.open-modal-button, .delete-comment-button, .edit-comment-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #294936;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.open-modal-button:hover, .delete-comment-button:hover, .edit-comment-button:hover {
+    background-color: #3E6259;
+}
+
+.delete-comment-button {
+    background-color: #d9534f;
+}
+
+.delete-comment-button:hover {
+    background-color: #c9302c;
+}
 
