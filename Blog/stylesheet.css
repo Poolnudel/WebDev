@@ -524,7 +524,7 @@ textarea {
 }
 
 form div {
-    text-align: right;
+    /*text-align: right;*/ /* Irgendwie quatsch gewesen? */
     margin-top: 1.5rem;
 }
 
