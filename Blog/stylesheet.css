@@ -583,3 +583,97 @@ button:last-child:hover {
     background-color: #c9302c;
 }
 
+/*
+#######################
+Impressum
+#######################
+*/
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #294936;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem;
+}
+
+.box {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.box strong {
+    font-size: 1.2rem;
+    color: #294936;
+}
+
+.box a {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #3E6259;
+    text-decoration: none;
+}
+
+.box a:hover {
+    text-decoration: underline;
+    color: #294936;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #555;
+}
+
+.content strong {
+    color: #294936;
+}
+
+footer {
+    background-color: #294936;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #d7e4c0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 0.5rem;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
