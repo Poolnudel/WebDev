@@ -5,7 +5,10 @@ Dringend:
 - [ ] Impressum -> Dozent
 - [ ] Kontakt -> wir
 - [ ] Doku
+
+Maybe:
 - [ ] NavBar
   - [ ] Sticky
   - [ ] Center
 - [ ] Password nicht im klartext
+- [ ] Logout css
