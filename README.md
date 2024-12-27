@@ -1,3 +1,7 @@
+Dringend:
+- [ ] Doku
+- [ ] Presentation
+
 ToDo's:
 - [ ] db connector @Caspar
 - [x] fav icon
