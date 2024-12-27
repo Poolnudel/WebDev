@@ -5,3 +5,4 @@ Dringend:
   - [ ] Sticky
   - [ ] Center
 - [ ] Texte zu den Kursen in die DB
+- [ ] Password nicht im klartext
