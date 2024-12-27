@@ -1,10 +1,11 @@
 Dringend:
+- [ ] Texte zu den Kursen in die DB
+- [ ] Doku DB
+- [ ] Presentation @C
+- [ ] Impressum -> Dozent
+- [ ] Kontakt -> wir
 - [ ] Doku
-- [ ] Presentation
 - [ ] NavBar
   - [ ] Sticky
   - [ ] Center
-- [ ] Texte zu den Kursen in die DB
 - [ ] Password nicht im klartext
-- [ ] Impressum -> Dozent
-- [ ] Kontakt -> wir
