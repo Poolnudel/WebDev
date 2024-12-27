@@ -1,6 +1,6 @@
 Dringend:
-- [ ] Texte zu den Kursen in die DB
-- [ ] Doku DB
+- [x] Texte zu den Kursen in die DB
+- [x] Doku DB
 - [ ] Presentation @C
 - [ ] Impressum -> Dozent
 - [ ] Kontakt -> wir
@@ -10,5 +10,5 @@ Maybe:
 - [ ] NavBar
   - [ ] Sticky
   - [ ] Center
-- [ ] Password nicht im klartext
+- [x] ~~Password nicht im klartext~~ Doch nicht. Wir wollen die auslesen können um sich mit den Usern für Tests anmelden können
 - [ ] Logout css
