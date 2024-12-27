@@ -58,7 +58,7 @@
 
         <div class="detail-content">
             <img src="images/<?= htmlspecialchars($beitrag['kursBild']); ?>" alt="Beitragsbild" style="max-width: 100%; margin-bottom: 1rem;">
-            <p><?= nl2br(htmlspecialchars($beitrag['kursText'])); ?></p>
+            <?= nl2br($beitrag['kursText']); ?>
         </div>
 
         <?php
