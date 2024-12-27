@@ -22,7 +22,7 @@ $courses = getCourses($conn);
 ?>
 
 <nav class="hero">
-    <ul>
+    <ul class="nav">
         <!-- Link zur Homepage -->
         <li><a href="index.php">Home</a></li>
 

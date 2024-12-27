@@ -63,6 +63,11 @@
         </a>
     </section>
 
+    <!-- Embedding -->
+    <div class="embedding-container">
+        <iframe class="embedded" src="https://rh-koeln.de/studium/bachelor-wirtschaftsinformatik#:~:text=Curriculum%20(Vollzeitstudium),Semester%3A"></iframe>
+    </div>
+
     <?php include 'components/footer.php'; // Footer einbinden ?>
 </body>
 </html>
