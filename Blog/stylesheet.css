@@ -14,6 +14,12 @@ body {
     padding: 0;
 }
 
+h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #294936;
+}
+
 /* 
 #######################
 Header und Navigation
@@ -259,27 +265,36 @@ Kommentare
 .comment {
     border-top: 1px solid #ccc;
     padding: 1rem 0;
-    display: flex;
     flex-direction: column; /* Autor und Titel getrennt */
     gap: 0.5rem;
 }
 
 .comment-author {
+	font-size: 0.75rem;
     font-weight: bold;
     color: #555;
-    margin-bottom: 0.25rem;
+    margin: 0px;
+	margin-right: 0.1rem;
+	margin-left: 0.25rem;
+}
+
+.comment-mail {
+	font-size: 0.65rem;
+    color: #bababa;
+	margin: 0px;
 }
 
 .comment-title {
     font-size: 1.2rem;
     color: #294936;
-    margin-bottom: 0.5rem;
+    margin: 0.25rem;
 }
 
 .comment-body {
     display: flex; /* Text und Bild nebeneinander */
     gap: 1rem;
     align-items: flex-start;
+	margin: 0.25rem;
 }
 
 .comment-text {
@@ -437,28 +452,106 @@ footer a:hover {
 
 /*
 #######################
-Modal (wieder entfernt)
+Modal
 #######################
 */
+/* Modal-Container */
 .modal {
-    display: none; /* Modal ist initial ausgeblendet */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
-    z-index: 1000; /* Modal über anderen Inhalten */
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
 }
 
+/* Modal-Inhalt */
 .modal-content {
-    position: relative;
     margin: 10% auto;
-    padding: 1rem;
-    background-color: white;
+    padding: 1.5rem;
+    background-color: #ffffff;
     width: 50%;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Schließen-Button */
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #999;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#close-modal:hover {
+    color: #555;
+}
+
+/* Labels und Eingabefelder */
+label {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+.comment-button-container {
+    margin: 1rem;
+}
+
+form div {
+    text-align: right;
+    margin-top: 1.5rem;
+}
+
+button {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:first-child {
+    background-color: #ddd;
+    margin-right: 0.5rem;
+}
+
+button:first-child:hover {
+    background-color: #bbb;
+}
+
+button:last-child {
+    background-color: #294936;
+    color: white;
+}
+
+button:last-child:hover {
+    background-color: #213a2b;
 }
 
 .close {
@@ -471,8 +564,6 @@ Modal (wieder entfernt)
 }
 
 .open-modal-button, .delete-comment-button, .edit-comment-button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
     background-color: #294936;
     color: white;
     border: none;

@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 }
 
 // Kommentare laden
-$sql = "SELECT kommentare.kommentarId, kommentare.userId, nutzer.userEmail, kommentare.kommentarTitel, 
+$sql = "SELECT kommentare.kommentarId, kommentare.userId, nutzer.userName, nutzer.userEmail, kommentare.kommentarTitel, 
         kommentare.kommentarText, kommentare.kommentarBild 
         FROM kommentare
         JOIN nutzer ON kommentare.userId = nutzer.userId
@@ -117,9 +117,11 @@ if (!$comments) {
 
 <div class="comments-section">
     <h2>Kommentare</h2>
-
-    <!-- Button zum Öffnen des Modals -->
-    <button id="open-modal" class="open-modal-button">Kommentar schreiben</button>
+    
+    <div class="comment-button-container">
+        <!-- Button zum Öffnen des Modals -->
+        <button id="open-modal" class="open-modal-button">Kommentar schreiben</button>
+    </div>
 
     <!-- Kommentare anzeigen -->
     <?php if (mysqli_num_rows($comments) > 0): ?>

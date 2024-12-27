@@ -1,7 +1,10 @@
 <?php while ($comment = mysqli_fetch_assoc($comments)): ?>
     <div class="comment">
-        <!-- Autor -->
-        <p class="comment-author"><?= htmlspecialchars($comment['userEmail']); ?></p>
+        <!-- Autor -->		
+		<span class="comment-author"><?= htmlspecialchars($comment['userName']); ?></span>
+		
+		<!-- Mail -->
+		<span class="comment-mail">(<?= htmlspecialchars($comment['userEmail']); ?>)</span>
         
         <!-- Titel -->
         <p class="comment-title"><?= htmlspecialchars($comment['kommentarTitel']); ?></p>

@@ -1,19 +1,24 @@
 <div id="comment-modal" class="modal">
     <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
-        <h3 id="modal-title">Neuen Kommentar schreiben</h3>
-        <form method="POST">
-            <input type="hidden" name="action" value="add" id="modal-action">
+        <span id="close-modal">&times;</span>
+        <h2 id="modal-title">Kommentar schreiben</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="action" id="modal-action" value="add">
             <input type="hidden" name="comment-id" id="comment-id">
-            <div class="form-group">
-                <label for="comment-title">Titel</label>
-                <input type="text" id="comment-title" name="comment-title" required>
+            
+            <label for="comment-title">Titel:</label>
+            <input type="text" name="comment-title" id="comment-title" required>
+            
+            <label for="comment-text">Kommentar:</label>
+            <textarea name="comment-text" id="comment-text" rows="4" required></textarea>
+            
+            <label for="comment-image">Bild hinzufügen:</label>
+            <input type="file" name="comment-image" id="comment-image" accept="image/png, image/jpeg, image/gif">
+            
+            <div>
+                <button type="button" id="cancel-button">Abbrechen</button>
+                <button type="submit">Speichern</button>
             </div>
-            <div class="form-group">
-                <label for="comment-text">Kommentar</label>
-                <textarea id="comment-text" name="comment-text" rows="4" required></textarea>
-            </div>
-            <button type="submit">Speichern</button>
         </form>
     </div>
 </div>
