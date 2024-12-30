@@ -29,9 +29,6 @@ header {
     background-color: #294936;
     width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 .header-logo img {
@@ -48,8 +45,16 @@ header {
 }
 
 nav {
-    background-color: #294936;
-    align-items: center
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    color: #d7e4c0;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    transition: background-color 0.3s ease;
 }
 
 nav ul {
@@ -71,6 +76,8 @@ nav ul li a {
     color: white;
     padding: 10px 15px;
     display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 nav ul li:hover .dropdown-menu {
@@ -81,6 +88,7 @@ nav ul li:hover .dropdown-menu {
 .dropdown-menu {
     display: none;
     position: absolute;
+    top: 100%;
     background: #444;
     list-style: none;
     margin: 0;
@@ -88,8 +96,16 @@ nav ul li:hover .dropdown-menu {
 }
 
 .dropdown-menu li a {
-    padding: 10px 15px;
-    color: white;
+    color: #d7e4c0;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #294936;
+    color: #ffffff;
 }
 
 /* 
@@ -342,7 +358,7 @@ Kommentare
 
 /* 
 #######################
-Login/Registrierung
+Login/Registrierung/Logout
 #######################
 */
 .login-container {
@@ -418,6 +434,12 @@ Login/Registrierung
 
 .toggle-link:hover {
     color: #3E6259;
+}
+
+.login-container p {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
 .error-message {
@@ -585,23 +607,9 @@ button:last-child:hover {
 
 /*
 #######################
-Impressum
+Impressum/Kontakt
 #######################
 */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-size: 2rem;
-    color: #294936;
-    text-align: center;
-    margin-top: 2rem;
-}
 
 .container {
     display: flex;
@@ -619,6 +627,7 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    margin: 0 auto;
 }
 
 .box strong {
@@ -649,6 +658,11 @@ h1 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.content h2 {
+    color: #294936;
+    text-align: center;
+}
+
 .content p {
     line-height: 1.6;
     font-size: 1rem;
@@ -657,23 +671,4 @@ h1 {
 
 .content strong {
     color: #294936;
-}
-
-footer {
-    background-color: #294936;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-}
-
-footer a {
-    color: #d7e4c0;
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin: 0 0.5rem;
-}
-
-footer a:hover {
-    text-decoration: underline;
 }

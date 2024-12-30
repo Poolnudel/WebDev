@@ -30,10 +30,10 @@ if (ini_get("session.use_cookies")) {
     <?php include 'components/header.php'; ?>
 
     <!-- Logout-Bestätigung -->
-    <div class="logout-container">
+    <div class="login-container">
         <h1>Logout erfolgreich</h1>
         <p>Sie wurden erfolgreich ausgeloggt.</p>
-        <a href="index.php">Zurück zur Startseite</a>
+        <a href="index.php" class="toggle-link">Zurück zur Startseite</a>
     </div>
 
     <?php include 'components/footer.php'; ?>

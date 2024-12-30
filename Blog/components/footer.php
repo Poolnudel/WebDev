@@ -1,5 +1,5 @@
 <footer>
     <div class="footer-content">
-        <a href="impressum.html">Impressum</a> | <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.php">Impressum</a> | <a href="kontakt.php">Kontakt</a>
     </div>
 </footer>
