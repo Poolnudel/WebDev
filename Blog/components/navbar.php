@@ -36,6 +36,14 @@ $courses = getCourses($conn);
             </ul>
         </li>
 
+        <!-- Suchformular -->
+        <li>
+            <form action="suche.php" method="get">
+                <input type="text" name="query" placeholder="Suche...">
+                <button type="submit">Suchen</button>
+            </form>
+        </li>
+
          <!-- Login/Logout -->
          <?php if (isset($_SESSION['user_id'])): ?>
             <li><a href="logout.php">Logout</a></li>
